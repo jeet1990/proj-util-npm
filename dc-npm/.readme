@@ -1,0 +1,25 @@
+export app_HOME=$(pwd)/gitlab
+
+
+##git 
+    git clone git@github.com:jeet1990/dc-gitlab.git
+    #branches
+
+
+
+
+##password can be fetched from 
+    docker exec -it gitlab-server grep 'Password:' /etc/gitlab/initial_root_password
+
+
+##network:
+
+
+##storage:
+
+##ref/useful commands:
+    
+
+##ref URL
+
+    https://blog.devgenius.io/be-the-master-of-your-code-150f5f9eb2cc
