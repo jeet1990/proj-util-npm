@@ -1,29 +1,33 @@
-
 version: '3.8'
 services:
-  <app>:
-    image: ''
+  npm:
+    image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
-    hostname: ''
-    container_name: ''
+    hostname: 'npm-h'
+    container_name: 'npm-c'
     environment:
-      - KEY="VALUE"
-    command: 
-      - '--config.file=/etc/prometheus/prometheus.yml'
-    networks:
-      - gitlab
+      DB_MYSQL_HOST: "db"
+      DB_MYSQL_PORT: 3306
+      DB_MYSQL_USER: "npm"
+      DB_MYSQL_PASSWORD: "npm"
+      DB_MYSQL_NAME: "npm"
     ports:
-      - ''
-      - ''
+      - '80:80'
+      - '443:443'
+      - '81:81'
     volumes:
-      - '$APP_DCHOMEDIR/gitlab-pdata/config:/etc/gitlab'
-      - '$APP_DC_HOMEDIR/gitlab-pdata/logs:/var/log/gitlab'
-      - '$APP_DC_HOMEDIR/gitlab-pdata/data:/var/opt/gitlab'
+      - '$APP_DCHOMEDIR/npm-pdata/letsencrypt:/etc/letsencrypt'
+      - '$APP_DC_HOMEDIR/npm-pdata/npm/data:/data'
 
-networks:
-  gitlab:
-    name: gitlab-network
-
-volumes:
-  prometheus-v:
-    name: prometheus-data
+  npm-db:
+    image: 'jc21/mariadb-aria:latest'
+    restart: unless-stopped
+    hostname: 'npm-db-h'
+    container_name: 'npm-db-c'
+    environment:
+      MYSQL_ROOT_PASSWORD: 'npm'
+      MYSQL_DATABASE: 'npm'
+      MYSQL_USER: 'npm'
+      MYSQL_PASSWORD: 'npm'
+    volumes:
+      - '$APP_DC_HOMEDIR/npm-pdata/npm-db/mysql:/var/lib/mysql'
