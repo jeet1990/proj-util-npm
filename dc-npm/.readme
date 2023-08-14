@@ -2,18 +2,24 @@ export app_HOME=$(pwd)/gitlab
 
 
 ##git 
-    git clone git@github.com:jeet1990/dc-gitlab.git
+    git clone git@github.com:jeet1990/proj-util-npm.git
     #branches
 
 
 
 
 ##password can be fetched from 
+    default passwd
+            Email:    admin@example.com
+            Password: changeme
+    user set password
+            admin1
+            Password@123
     docker exec -it gitlab-server grep 'Password:' /etc/gitlab/initial_root_password
 
 
 ##network:
-
+    http://127.0.0.1:81
 
 ##storage:
 
@@ -21,5 +27,5 @@ export app_HOME=$(pwd)/gitlab
     
 
 ##ref URL
-
-    https://blog.devgenius.io/be-the-master-of-your-code-150f5f9eb2cc
+    https://nginxproxymanager.com/guide/#quick-setup
+    https://medium.com/@alvaromartmunoz/nginx-proxy-manager-a-reverse-proxy-management-system-281140a21d7e
